@@ -25,10 +25,23 @@ const Navbar = () => {
 //       })
 //    },[]);
 
+// useEffect(function(){
+//   if(isAuthenticated){
+//     getUserCart().then(res => {
+//       setCartCount(res.numOfCartItems);
+//     })
+//   }
+// },[isAuthenticated]);
 useEffect(function(){
   if(isAuthenticated){
-    getUserCart().then(res => {
-      setCartCount(res.numOfCartItems);
+    fetch("https://ecommerce.routemisr.com/api/v1/cart", {
+      headers: {
+        token: (isAuthenticated as any)?.user?.credentialsToken || ""
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data?.numOfCartItems) setCartCount(data.numOfCartItems);
     })
   }
 },[isAuthenticated]);
