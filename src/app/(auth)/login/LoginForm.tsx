@@ -32,40 +32,59 @@ const router=  useRouter();
   const {control,handleSubmit} = Rhfobj;
   
 
- async function mySubmit(data:LoginFormType){
-    // console.log('data',data);
+//  async function mySubmit(data:LoginFormType){
+//     // console.log('data',data);
 
-    //BE
-    // signIn('credentials',{
-    //  email:data.email,password:data.password
-    // });
-    // signIn('credentials',{
-    //  ...data,redirect:true,callbackUrl:'/'
-    // });
-   const res = await signIn('credentials',{
-     ...data,redirect:false
-    });
-    if(res?.ok){
-        toast.success("welcome back",{position:"top-right",duration:3000});
-    // router.push('/');
-    window.location.href="/";
+//     //BE
+//     // signIn('credentials',{
+//     //  email:data.email,password:data.password
+//     // });
+//     // signIn('credentials',{
+//     //  ...data,redirect:true,callbackUrl:'/'
+//     // });
+//    const res = await signIn('credentials',{
+//      ...data,redirect:false
+//     });
+//     if(res?.ok){
+//         toast.success("welcome back",{position:"top-right",duration:3000});
+//     // router.push('/');
+//     window.location.href="/";
 
-    }else{
-      toast.error("Email or password is invaild",{position:"top-right",duration:3000});
+//     }else{
+//       toast.error("Email or password is invaild",{position:"top-right",duration:3000});
 
-    }
-  //  const resOutput = await handleLogin(data);
+//     }
+//   //  const resOutput = await handleLogin(data);
    
-  //  if(resOutput===  true){
-  //   toast.success("welcome back",{position:"top-right",duration:3000});
-  //   router.push('/');
+//   //  if(resOutput===  true){
+//   //   toast.success("welcome back",{position:"top-right",duration:3000});
+//   //   router.push('/');
     
-  //  }else{
-  //     toast.error(resOutput,{position:"top-right",duration:3000});
-  //  }
+//   //  }else{
+//   //     toast.error(resOutput,{position:"top-right",duration:3000});
+//   //  }
 
     
+//   }
+async function mySubmit(data: LoginFormType) {
+  const res = await signIn('credentials', {
+    ...data,
+    redirect: false,
+    callbackUrl: '/'
+  });
+  
+  console.log('signIn res:', res);
+  
+  if (res?.error) {
+    toast.error("Email or password is invalid", { position: "top-right", duration: 3000 });
+    return;
   }
+  
+  if (res?.ok) {
+    toast.success("welcome back", { position: "top-right", duration: 3000 });
+    window.location.href = "/";
+  }
+}
 
   return (
     <div>
