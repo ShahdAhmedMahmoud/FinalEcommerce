@@ -209,6 +209,7 @@ export const nextAuthConfig: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     jwt({ token, user }) {
       console.log("params", { token, user });
