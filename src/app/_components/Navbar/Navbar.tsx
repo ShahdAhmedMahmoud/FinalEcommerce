@@ -19,11 +19,19 @@ const Navbar = () => {
     // session.status
     const {cartCount}=useContext(CartContext);
 
-   useEffect(function(){
-      getUserCart().then(res => {
-        setCartCount(res.numOfCartItems);
-      })
-   },[]);
+//    useEffect(function(){
+//       getUserCart().then(res => {
+//         setCartCount(res.numOfCartItems);
+//       })
+//    },[]);
+
+useEffect(function(){
+  if(isAuthenticated){
+    getUserCart().then(res => {
+      setCartCount(res.numOfCartItems);
+    })
+  }
+},[isAuthenticated]);
 
 
     function handleLogout(){
