@@ -220,14 +220,22 @@ export const nextAuthConfig: NextAuthOptions = {
       }
       return token;
     },
+    // session({ session, token }) {
+    //   console.log("params", { session, token });
+    //   if (session.user) {
+    //     session.user.id = token.userId as string;
+    //     session.user.credentialsToken = token.credentialsToken as string;
+    //   }
+    //   return session;
+    // },
+
     session({ session, token }) {
-      console.log("params", { session, token });
-      if (session.user) {
-        session.user.id = token.userId as string;
-        session.user.credentialsToken = token.credentialsToken as string;
-      }
-      return session;
-    },
+  if (session?.user) {
+    session.user.id = token.userId as string;
+    session.user.credentialsToken = token.credentialsToken as string;
+  }
+  return session;
+},
   },
   session: {
     maxAge: 60 * 60 * 24, // 1 day
