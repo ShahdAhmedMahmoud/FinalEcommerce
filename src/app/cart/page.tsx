@@ -22,7 +22,9 @@ const Cart =async () => {
   }
 
 
-   const {numOfCartItems,products,totalCartPrice }  = await handleGetUserCart();
+  //  const {numOfCartItems,products,totalCartPrice }  = await handleGetUserCart();
+  const cartData = await handleGetUserCart();
+const {numOfCartItems, products, totalCartPrice} = cartData ?? {numOfCartItems:0, products:[], totalCartPrice:0};
   return (
     <div>
       <h1>user Cart</h1>
