@@ -9,7 +9,7 @@ export async function getAllProducts():Promise<ProductType[]|null>
       // console.log('token',cookie.get('user-token')?.value);
       
        const response = await fetch("https://ecommerce.routemisr.com/api/v1/products",{
-        cache:"force-cache"
+        cache:"no-store"
        } );
       //  const response = await fetch("https://ecommerce.routemisr.com/api/v1/products" );
       
