@@ -176,7 +176,7 @@ export const nextAuthConfig: NextAuthOptions = {
             method: "post",
             body: JSON.stringify(credentials),
             headers: {
-              "content-Type": "application/json",
+              "Content-Type": "application/json",
             },
           }
         );
